@@ -20,7 +20,7 @@ const DropDownPickerComponent = ({setSelectedValue, setplaceList}) => {
     try {
       const response = await fetch(`http://10.19.129.145:5001/local-hospitals`);
       const json = await response.json();
-      const realList = json.hospitals.map((hospital) => ({name: hospital[1], latitude: hospital[2], longitude: hospital[3], hours: hospital[6]}))
+      const realList = json.hospitals.map((hospital) => ({name: hospital[1], latitude: hospital[2], longitude: hospital[3], hours: hospital[19]}))
       console.log(realList)
       setSelectedValue(placeList);
       setplaceList(realList)

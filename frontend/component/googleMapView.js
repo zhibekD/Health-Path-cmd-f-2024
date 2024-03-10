@@ -1,14 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import PlaceInfo from './placeInfo';
 
 const GoogleMapView = ({placeList}) => {
-  
-  // const placeList = [
-  //   { latitude: 49.2623, longitude: -123.2454, name: 'Place 1' },
-  //   { latitude: 55.00, longitude: -134.247, name: 'Place 2' },
-  // ]
 
   return (
     <View style={{ flex: 1 }}> 
@@ -24,7 +19,7 @@ const GoogleMapView = ({placeList}) => {
         }}
       >
         {console.log(placeList)}
-        {placeList?.map((place, index) => index <= 10 && (
+        {placeList?.map((place, index) => index <= 20 && (
           <Marker
             key={index}
             coordinate={{
@@ -32,7 +27,7 @@ const GoogleMapView = ({placeList}) => {
               longitude: place.longitude
             }}
           >
-            <Callout style={{ width: 200, height: 200 }}>
+            <Callout style={{ width: 250, height: 300 }}>
               <PlaceInfo name={place.name} hours={place.hours} />
             </Callout>
           </Marker>
