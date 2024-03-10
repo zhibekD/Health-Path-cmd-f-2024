@@ -1,6 +1,7 @@
 import time
 import googlemaps  # pip install googlemaps
 import sqlite3
+import random
 
 
 def km_to_meters(km):
@@ -27,7 +28,15 @@ def create_table(cursor):
                         website TEXT,
                         distance TEXT,
                         wheelchair_accessible_entrance TEXT,
-                        formatted_phone_number TEXT)''')
+                        formatted_phone_number TEXT,
+                        translation REAL,  
+                        parking REAL,
+                        visual_aid REAL,
+                        hearing_supp REAL,
+                        emergency_ser REAL,
+                        telehealth REAL,
+                        lgbtq REAL)''')  # Added commas to separate fields
+
 
 # Function to insert data into the SQLite table
 def insert_data(cursor, hospital_list, user_location):
@@ -37,6 +46,13 @@ def insert_data(cursor, hospital_list, user_location):
         lat = hospital['geometry']['location']['lat']
         lng = hospital['geometry']['location']['lng']
         url = 'https://www.google.com/maps/place/?q=place_id:' + place_id
+        translation = random.choice([1, 0])
+        parking =random.choice([1, 0])
+        visual_aid =random.choice([1, 0])
+        hearing_supp =random.choice([1, 0])
+        emergency_ser =random.choice([1, 0])
+        telehealth =random.choice([1, 0])
+        lgbtq =random.choice([1, 0])
         
         # Fetch additional place details
         
@@ -66,8 +82,15 @@ def insert_data(cursor, hospital_list, user_location):
         # Extract distance text
         distance_text = distance_result['rows'][0]['elements'][0].get('distance', {}).get('text', 'N/A')
         
-        cursor.execute('INSERT OR IGNORE INTO hospitales VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-               (place_id, name, lat, lng, url, rating, opening_hours, reviews_str, website, distance_text, wheelchair_accessible_entrance, formatted_phone_number))
+        cursor.execute('INSERT OR IGNORE INTO hospitales VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)',
+               (place_id, name, lat, lng, url, rating, opening_hours, reviews_str, website, distance_text, 
+                wheelchair_accessible_entrance, formatted_phone_number, translation,
+                        parking,
+                        visual_aid,
+                        hearing_supp,
+                        emergency_ser,
+                        telehealth,
+                        lgbtq))
 
 
 
