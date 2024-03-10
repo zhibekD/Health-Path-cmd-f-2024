@@ -13,7 +13,7 @@ const MySearchBar = () => {
         placeholder="Search"
         onChangeText={updateSearch}
         value={search}
-        style = {{ width: '90%'}}
+        style = {{ width: '90%', backgroundColor: 'white'}}
       />
     );
   };
