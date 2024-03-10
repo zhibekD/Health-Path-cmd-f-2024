@@ -21,7 +21,7 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen 
-        name="Search" 
+        name="Nearby" 
         component={Search}
         options={{
             tabBarLabel: 'Nearby',
