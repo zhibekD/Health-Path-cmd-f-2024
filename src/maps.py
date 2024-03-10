@@ -79,7 +79,7 @@ def insert_data(cursor, hospital_list, user_location):
             response = co.summarize(
                 text=reviews_str,
                 model='command',
-                length='medium',
+                length='short',
                 extractiveness='medium'
             )
             summary = response.summary
