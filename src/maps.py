@@ -2,7 +2,8 @@ import time
 import googlemaps  # pip install googlemaps
 import sqlite3
 import random
-
+import cohere
+co = cohere.Client('KJ8iAaWa0pnbcWgxwfPjAE6HrYz5llZTMQ63wDpG')
 
 def km_to_meters(km):
     try:
@@ -35,7 +36,8 @@ def create_table(cursor):
                         hearing_supp REAL,
                         emergency_ser REAL,
                         telehealth REAL,
-                        lgbtq REAL)''')  # Added commas to separate fields
+                        lgbtq REAL,
+                        summary TEXT)''')  # Added commas to separate fields
 
 
 # Function to insert data into the SQLite table
@@ -54,6 +56,7 @@ def insert_data(cursor, hospital_list, user_location):
         telehealth =random.choice([1, 0])
         lgbtq =random.choice([1, 0])
         
+        
         # Fetch additional place details
         
         place_details = map_client.place(place_id=place_id, fields=['rating', 'opening_hours', 'reviews', 'website', 'wheelchair_accessible_entrance', 'formatted_phone_number'])
@@ -69,6 +72,23 @@ def insert_data(cursor, hospital_list, user_location):
         # Join the reviews array (text of each review) into a string using a delimiter
         reviews_str = '; '.join([review['text'] for review in result.get('reviews', [])])  # Use semicolon as a delimiter
 
+        if reviews_str and len(reviews_str)> 250:
+            # Call co.summarize API
+            
+            response = co.summarize(
+                text=reviews_str,
+                model='command',
+                length='medium',
+                extractiveness='medium'
+            )
+            summary = response.summary
+            # summary = "test summary"
+            
+        else:
+            # reviews_str is empty or None
+            print("No reviews available to summarize.")
+            summary = "No summary available"
+
         wheelchair_accessible_entrance = result.get('wheelchair_accessible_entrance', 'N/A')
         formatted_phone_number = result.get('formatted_phone_number', 'N/A')
         website = result.get('website', 'N/A')
@@ -82,7 +102,7 @@ def insert_data(cursor, hospital_list, user_location):
         # Extract distance text
         distance_text = distance_result['rows'][0]['elements'][0].get('distance', {}).get('text', 'N/A')
         
-        cursor.execute('INSERT OR IGNORE INTO hospitales VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?)',
+        cursor.execute('INSERT OR IGNORE INTO hospitales VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?)',
                (place_id, name, lat, lng, url, rating, opening_hours, reviews_str, website, distance_text, 
                 wheelchair_accessible_entrance, formatted_phone_number, translation,
                         parking,
@@ -90,7 +110,7 @@ def insert_data(cursor, hospital_list, user_location):
                         hearing_supp,
                         emergency_ser,
                         telehealth,
-                        lgbtq))
+                        lgbtq, summary))
 
 
 
