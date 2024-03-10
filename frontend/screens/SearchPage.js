@@ -24,9 +24,8 @@ const styles = StyleSheet.create({
   searchBar: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 20,
   },
   mapView: {
-    flex: 10,
+    flex: 11,
   },
 });
