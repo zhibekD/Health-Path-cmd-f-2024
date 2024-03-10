@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import MySearchBar from '../component/searchBar';
 import GoogleMapView from '../component/googleMapView';
+import DropDownPicker from '../component/dropDown';
 
-export default function Search() {
+const Search = () => {
+
+  const [selectedValue, setSelectedValue] = useState();
+
+  const [placeList, setplaceList] = useState([]);
+
+  function setValue(value) {
+    this.setSelectedValue(value);
+  }
+
+  useEffect(()=>{
+    console.log("Updated place list");
+  },[placeList])
+ 
   return (
     <View style={styles.container}>
-      <View style={styles.searchBar}>
-        <MySearchBar />
-      </View>
+      <DropDownPicker setSelectedValue={() => setSelectedValue} setplaceList={setplaceList}/>
       <View style={styles.mapView}>
-        <GoogleMapView />
+        <GoogleMapView value={selectedValue} placeList={placeList} />
       </View>
     </View>
   );
@@ -21,11 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   },
-  searchBar: {
-    flex: 1,
-    alignItems: 'center',
-  },
   mapView: {
     flex: 11,
   },
 });
+
+export default Search;

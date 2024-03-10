@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Card, Text } from 'react-native-paper';
 
 {/* TODO: get the actual info */}
-const placeInfo = () => (
-  <Card style={{ width: '90%', height: '30%'}}>
+const PlaceInfo = ({name, hours}) => (
+  <Card style={{ height: '100%'}}>
     <Card.Content>
-      <Text variant="titleLarge">Place Name</Text>
-      <Text variant="bodyMedium">Place Info</Text>
+      <Text variant="titleLarge">{name}</Text>
+      <Text variant="bodyMedium">{hours}</Text>
     </Card.Content>
   </Card>
 );
 
-export default placeInfo;
+export default PlaceInfo;
