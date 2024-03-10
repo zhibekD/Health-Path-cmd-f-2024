@@ -6,7 +6,9 @@ const DropDownPickerComponent = ({setSelectedValue, setplaceList}) => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     {label: 'Wheelchair', value: 'Wheelchair'},
-    {label: 'Option2', value: 'Option2'},
+    {label: 'Visual Aid', value: 'Visual Aid'},
+    {label: 'Parking', value: 'Parking'},
+    {label: 'Emergency', value: 'Earking'},
   ]);
 
   const handleSearch = async () => {
