@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/HomePage';
 import Search from '../screens/SearchPage';
+import Fav from '../screens/FavouritePlaces';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,8 +19,8 @@ export default function TabNavigation() {
           tabBarLabelStyle: {
             fontSize: 16
           },
-          tabBarIcon: () => (
-            <FontAwesome name="stethoscope" size={24} color="black" />
+          tabBarIcon: ({ color }) => ( 
+            <FontAwesome name="stethoscope" size={24} color={color} />
           ),
         }}
       />
@@ -31,11 +32,24 @@ export default function TabNavigation() {
             tabBarLabelStyle: {
               fontSize: 16
             },
-            tabBarIcon: () => (
-              <Ionicons name="location-outline" size={24} color="black" />
+            tabBarIcon: ({ color }) => ( 
+              <Ionicons name="location-outline" size={24} color={color} />
+            ),
+          }} />
+        <Tab.Screen 
+        name="Favourite Places" 
+        component={Fav}
+        options={{
+            tabBarLabel: 'Favourites',
+            tabBarLabelStyle: {
+              fontSize: 16
+            },
+            tabBarIcon: ({ color }) => ( 
+              <FontAwesome name="heartbeat" size={24} color={color} />
             ),
           }} />
     </Tab.Navigator>
+    
   );
 }
 
