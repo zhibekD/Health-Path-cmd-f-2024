@@ -6,4 +6,9 @@
   <img src="https://github.com/user-attachments/assets/46545b13-d42d-4e94-b5ef-12e3c1d213c9" width="23%">
 </p>
 
-[![Demo Video](https://img.youtube.com/vi/ep_4QTObhUo/0.jpg)](https://youtu.be/ep_4QTObhUo)
+<p align="center">
+  <a href="https://youtu.be/ep_4QTObhUo" target="_blank">
+    <img src="https://img.shields.io/badge/Watch%20on%20YouTube-red?logo=youtube&logoColor=white&style=for-the-badge" alt="Watch on YouTube"/>
+  </a>
+</p>
+
