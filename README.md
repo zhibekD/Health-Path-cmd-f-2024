@@ -14,7 +14,7 @@ HealthPath empowers individuals by providing an accessible, easy-to-use map that
 
   <!-- YouTube demo button -->
   <a href="https://youtu.be/ep_4QTObhUo" target="_blank">
-    <img src="https://img.shields.io/badge/▶%20Watch%20Demo%20on%20YouTube-red?logo=youtube&logoColor=white&style=for-the-badge" alt="Watch Demo on YouTube"/>
+    <img src="https://img.shields.io/badge/%20Watch%20Demo%20on%20YouTube-red?logo=youtube&logoColor=white&style=for-the-badge" alt="Watch Demo on YouTube"/>
   </a>
 
 </div>
